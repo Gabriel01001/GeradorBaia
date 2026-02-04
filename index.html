@@ -3,186 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMX Master - Gestão de Vendedores</title>
+    <title>EMX Systems - Portal Completo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Garante que o que não deve aparecer fique escondido */
         .page { display: none !important; }
         .page-active { display: block !important; }
         .flex-active { display: flex !important; }
+        
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)); }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 font-sans text-gray-900">
 
-    <div id="page-home" class="page">
-        <button onclick="irPara('page-login')" class="m-10 bg-blue-600 text-white p-4 rounded">Entrar no Sistema</button>
-    </div>
-
-    <div id="page-login" class="page h-screen bg-slate-900 items-center justify-center">
-        <div class="bg-white p-8 rounded-2xl w-full max-w-md">
-            <h2 class="text-2xl font-bold mb-6 text-center">Login Master</h2>
-            <input type="email" id="email" class="w-full p-3 border rounded mb-4" placeholder="admin@emx.com">
-            <input type="password" id="password" class="w-full p-3 border rounded mb-4" placeholder="123456">
-            <button onclick="fazerLogin()" class="w-full bg-blue-600 text-white py-3 rounded font-bold">Entrar</button>
-        </div>
-    </div>
-
-    <div id="page-admin" class="page h-screen flex">
-        
-        <aside class="w-64 bg-slate-900 text-white p-6 flex flex-col shadow-xl">
-            <div class="text-xl font-bold mb-10 text-blue-500 tracking-tighter text-center border-b border-slate-800 pb-4">
-                EMX MASTER
-            </div>
-            <nav class="flex-1 space-y-2">
-                <button onclick="switchTab('tab-lojas')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition text-left">
-                    <i class="fa-solid fa-store"></i> Gerenciar Lojas
-                </button>
-                <button onclick="switchTab('tab-vendedores')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition text-left">
-                    <i class="fa-solid fa-user-tie"></i> Cadastrar Vendedores
-                </button>
-            </nav>
-            <button onclick="irPara('page-home')" class="text-red-400 p-3 text-left hover:bg-red-500/10 rounded-lg transition">
-                <i class="fa-solid fa-power-off mr-2"></i> Sair
+    <div id="page-home" class="page page-active">
+        <nav class="bg-white shadow-sm py-4 px-8 flex justify-between items-center sticky top-0 z-50">
+            <div class="text-2xl font-bold text-blue-600 tracking-tighter">EMX<span class="text-gray-800 font-light">Systems</span></div>
+            <button onclick="irPara('page-login')" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg">
+                Entrar
             </button>
-        </aside>
+        </nav>
 
-        <main class="flex-1 bg-gray-50 p-8 overflow-y-auto">
-            
-            <div id="tab-lojas" class="tab-content active">
-                <div class="flex justify-between items-center mb-8">
-                    <h1 class="text-2xl font-bold text-slate-800">Lojas Cadastradas</h1>
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold">+ Nova Loja</button>
-                </div>
-                <div class="bg-white rounded-xl shadow overflow-hidden">
-                    <table class="w-full text-left border-collapse">
-                        <thead class="bg-gray-50 text-gray-400 text-xs uppercase font-bold">
-                            <tr>
-                                <th class="p-4">Identificação</th>
-                                <th class="p-4">Preço</th>
-                                <th class="p-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr>
-                                <td class="p-4 font-medium">Loja 204 - Rio Sul</td>
-                                <td class="p-4 text-blue-600 font-bold">R$ 4.500</td>
-                                <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold">ATIVO</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <header class="relative h-[450px] flex items-center justify-center text-white">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1350&q=80" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4">O melhor ponto para o seu negócio</h1>
+                <p class="text-xl mb-8 text-gray-200 font-light">Encontre lojas e quiosques nos shoppings mais movimentados.</p>
+                <div class="bg-white p-2 rounded-xl shadow-2xl flex flex-col md:flex-row max-w-2xl mx-auto gap-2">
+                    <input type="text" placeholder="Qual shopping ou cidade?" class="flex-1 p-4 text-gray-800 outline-none rounded-lg">
+                    <button class="bg-blue-600 px-8 py-4 rounded-lg font-bold">Buscar</button>
                 </div>
             </div>
+        </header>
 
-            <div id="tab-vendedores" class="tab-content">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h1 class="text-2xl font-bold text-slate-800">Equipe de Vendedores</h1>
-                        <p class="text-sm text-gray-500">Crie acessos para quem vai anunciar as lojas.</p>
-                    </div>
-                    <button onclick="document.getElementById('modalVendedor').classList.remove('hidden')" class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-700 transition shadow-lg shadow-green-100">
-                        + Adicionar Vendedor
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="listaVendedores">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl">
-                            E
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-slate-800">Emmanuel Martins</h3>
-                            <p class="text-xs text-gray-400 italic">vendas.emmanuel@emx.com</p>
-                        </div>
-                        <button class="text-gray-300 hover:text-red-500"><i class="fa-solid fa-trash"></i></button>
+        <main class="max-w-7xl mx-auto py-16 px-8">
+            <h2 class="text-3xl font-bold mb-10 text-center">Destaques da Semana</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1582037928769-181f2644ecb7?auto=format&fit=crop&w=600" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg">Loja Premium - 45m²</h3>
+                        <p class="text-gray-400 text-sm mb-4">Shopping Rio Sul, RJ</p>
+                        <p class="text-blue-600 font-bold">R$ 4.500,00</p>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <div id="modalVendedor" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[100] px-4">
-        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
-            <div class="p-6 border-b flex justify-between items-center">
-                <h3 class="text-xl font-bold">Novo Vendedor</h3>
-                <button onclick="document.getElementById('modalVendedor').classList.add('hidden')" class="text-gray-400 text-2xl">&times;</button>
+    <div id="page-login" class="page h-screen bg-slate-900 items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-10 mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Acesso Master</h2>
+            <div class="space-y-6">
+                <input type="email" id="userEmail" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500" placeholder="admin@emx.com">
+                <input type="password" id="userPass" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500" placeholder="123456">
+                <button onclick="tentarLogin()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-xl hover:bg-blue-700 transition">Acessar Painel</button>
+                <button onclick="irPara('page-home')" class="w-full text-gray-400 text-sm hover:underline">Voltar para o site</button>
             </div>
-            <form class="p-6 space-y-4" id="formVendedor">
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
-                    <input type="text" id="nomeVendedor" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-green-500" placeholder="Ex: João Silva" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">E-mail de Acesso</label>
-                    <input type="email" id="emailVendedor" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-green-500" placeholder="joao@vendedor.com" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Senha Provisória</label>
-                    <input type="password" id="senhaVendedor" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-green-500" placeholder="••••••" required>
-                </div>
-                <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-green-100 hover:bg-green-700 transition">
-                    Criar Acesso Vendedor
+        </div>
+    </div>
+
+    <div id="page-admin" class="page h-screen flex overflow-hidden">
+        <aside class="w-72 bg-slate-900 text-white flex flex-col p-6 shadow-2xl">
+            <div class="text-xl font-bold mb-10 text-blue-500 tracking-tighter text-center border-b border-slate-800 pb-4">
+                EMX MASTER
+            </div>
+            <nav class="flex-1 space-y-3">
+                <button onclick="switchTab('tab-lojas')" class="w-full flex items-center gap-3 p-4 bg-slate-800 hover:bg-blue-600 rounded-2xl transition text-left">
+                    <i class="fa-solid fa-store"></i> Gerenciar Lojas
                 </button>
-            </form>
+                <button onclick="switchTab('tab-vendedores')" class="w-full flex items-center gap-3 p-4 bg-slate-800 hover:bg-green-600 rounded-2xl transition text-left">
+                    <i class="fa-solid fa-user-tie"></i> Vendedores
+                </button>
+            </nav>
+            <button onclick="irPara('page-home')" class="text-red-400 p-4 text-left hover:bg-red-500/10 rounded-2xl transition">
+                <i class="fa-solid fa-power-off mr-2"></i> Sair do Painel
+            </button>
+        </aside>
+
+        <main class="flex-1 bg-gray-50 p-12 overflow-y-auto">
+            
+            <div id="tab-lojas" class="tab-content active">
+                <div class="flex justify-between items-center mb-10">
+                    <h1 class="text-3xl font-bold">Lojas e Imóveis</h1>
+                    <button class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-blue-100">+ Nova Loja</button>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                    <p class="text-gray-500">Aqui você gerencia os anúncios que aparecem na Home.</p>
+                </div>
+            </div>
+
+            <div id="tab-vendedores" class="tab-content">
+                <div class="flex justify-between items-center mb-10">
+                    <h1 class="text-3xl font-bold">Gestão de Vendedores</h1>
+                    <button onclick="abrirModal()" class="bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-green-100">+ Novo Vendedor</button>
+                </div>
+                <div id="listaVendedores" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">EM</div>
+                        <div>
+                            <h3 class="font-bold">Emmanuel Martins</h3>
+                            <p class="text-xs text-gray-400">emmanuel@emx.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modalVendedor" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[100]">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
+            <h3 class="text-2xl font-bold mb-6">Cadastrar Vendedor</h3>
+            <div class="space-y-4">
+                <input type="text" id="vNome" placeholder="Nome do Vendedor" class="w-full p-4 border rounded-xl">
+                <input type="email" id="vEmail" placeholder="E-mail de acesso" class="w-full p-4 border rounded-xl">
+                <button onclick="salvarVendedor()" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold shadow-lg">Salvar Acesso</button>
+                <button onclick="fecharModal()" class="w-full text-gray-400">Cancelar</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Troca de Páginas (Home / Login / Admin)
-        function irPara(pageId) {
-            document.querySelectorAll('.page').forEach(p => {
-                p.classList.remove('page-active', 'flex-active');
-            });
-            const destino = document.getElementById(pageId);
-            if (pageId === 'page-login' || pageId === 'page-admin') {
-                destino.classList.add('flex-active');
-            } else {
-                destino.classList.add('page-active');
-            }
+        function irPara(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('page-active', 'flex-active'));
+            const d = document.getElementById(id);
+            if(id === 'page-login' || id === 'page-admin') d.classList.add('flex-active');
+            else d.classList.add('page-active');
+            window.scrollTo(0,0);
         }
 
-        // Troca de Abas dentro do Admin (Lojas / Vendedores)
-        function switchTab(tabId) {
+        function switchTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+            document.getElementById(id).classList.add('active');
         }
 
-        function fazerLogin() {
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
-            if (email === "admin@emx.com" && pass === "123456") {
-                irPara('page-admin');
-            } else {
-                alert("Login Master incorreto!");
-            }
+        function tentarLogin() {
+            const e = document.getElementById('userEmail').value;
+            const p = document.getElementById('userPass').value;
+            if(e === "admin@emx.com" && p === "123456") irPara('page-admin');
+            else alert("Dados Master Incorretos!");
         }
 
-        // Lógica de Cadastrar Vendedor (Simulação)
-        document.getElementById('formVendedor').onsubmit = function(e) {
-            e.preventDefault();
-            const nome = document.getElementById('nomeVendedor').value;
-            const email = document.getElementById('emailVendedor').value;
+        function abrirModal() { document.getElementById('modalVendedor').classList.remove('hidden'); }
+        function fecharModal() { document.getElementById('modalVendedor').classList.add('hidden'); }
 
-            // Cria o card do novo vendedor na tela
-            const novoCard = `
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 animate-pulse">
-                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-xl">
-                        ${nome.charAt(0).toUpperCase()}
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-slate-800">${nome}</h3>
-                        <p class="text-xs text-gray-400 italic">${email}</p>
-                    </div>
-                    <button class="text-gray-300"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            `;
+        function salvarVendedor() {
+            const n = document.getElementById('vNome').value;
+            const e = document.getElementById('vEmail').value;
+            if(!n || !e) return alert("Preencha tudo!");
             
-            document.getElementById('listaVendedores').innerHTML += novoCard;
-            alert(`Vendedor ${nome} cadastrado com sucesso!`);
-            document.getElementById('modalVendedor').classList.add('hidden');
-            this.reset();
-        };
+            const card = `<div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold">${n.charAt(0)}</div>
+                <div><h3 class="font-bold">${n}</h3><p class="text-xs text-gray-400">${e}</p></div>
+            </div>`;
+            
+            document.getElementById('listaVendedores').innerHTML += card;
+            fecharModal();
+            alert("Vendedor salvo!");
+        }
     </script>
 </body>
 </html>
