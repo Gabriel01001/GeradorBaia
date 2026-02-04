@@ -3,104 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Imobiliário EMX</title>
+    <title>EMX Lojas - Premium Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .page { display: none; }
         .page-active { display: block !important; }
         .flex-active { display: flex !important; }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 font-sans text-gray-900">
 
     <div id="page-home" class="page page-active">
-        <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-blue-600">EMX<span class="text-gray-800 font-normal">Systems</span></div>
-            <button onclick="irPara('page-login')" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold">Entrar</button>
+        <nav class="bg-white/90 backdrop-blur-md shadow-sm py-4 px-8 flex justify-between items-center sticky top-0 z-50">
+            <div class="text-2xl font-bold text-blue-600 tracking-tighter">EMX<span class="text-gray-800 font-light">Systems</span></div>
+            <div class="hidden md:flex space-x-8 font-medium text-gray-600">
+                <a href="#" class="hover:text-blue-600 transition">Shoppings</a>
+                <a href="#" class="hover:text-blue-600 transition">Lojas</a>
+                <a href="#" class="hover:text-blue-600 transition">Sobre</a>
+            </div>
+            <button onclick="irPara('page-login')" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                Entrar
+            </button>
         </nav>
 
-        <div class="bg-slate-800 text-white py-20 text-center px-4">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Marketplace de Lojas e Shoppings</h1>
-            <p class="text-gray-300 mb-8 text-lg">A maior vitrine comercial para o seu negócio.</p>
-            <div class="max-w-xl mx-auto bg-white rounded-lg p-2 flex">
-                <input type="text" placeholder="Qual shopping você busca?" class="flex-1 p-3 text-gray-800 outline-none">
-                <button class="bg-blue-600 px-6 py-3 rounded-lg font-bold">Buscar</button>
-            </div>
-        </div>
-
-        <div class="max-w-6xl mx-auto p-10">
-            <h2 class="text-2xl font-bold mb-6">Lojas em Destaque</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl shadow p-4">
-                    <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=400" class="rounded-lg mb-4">
-                    <h3 class="font-bold">Loja Shopping Rio Sul</h3>
-                    <p class="text-blue-600 font-bold">R$ 5.000,00</p>
+        <header class="relative h-[550px] flex items-center justify-center text-white">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1350&q=80" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+            
+            <div class="relative z-10 text-center px-4 max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Sua nova loja nos melhores endereços.</h1>
+                <p class="text-xl md:text-2xl mb-10 text-gray-200 font-light">Encontre quiosques, lojas e espaços comerciais em segundos.</p>
+                
+                <div class="bg-white p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2 max-w-3xl mx-auto">
+                    <div class="flex-1 flex items-center px-4 border-r border-gray-100">
+                        <i class="fa-solid fa-magnifying-glass text-gray-400 mr-3"></i>
+                        <input type="text" placeholder="Qual shopping ou cidade?" class="w-full py-3 text-gray-800 outline-none">
+                    </div>
+                    <button class="bg-blue-600 px-10 py-4 rounded-xl font-bold hover:bg-blue-700 transition">Buscar Agora</button>
                 </div>
             </div>
-        </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto py-20 px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold">Oportunidades em Destaque</h2>
+                    <p class="text-gray-500 mt-2">Espaços verificados pela curadoria EMX.</p>
+                </div>
+                <button class="text-blue-600 font-bold hover:underline">Ver tudo <i class="fa-solid fa-arrow-right ml-1"></i></button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1582037928769-181f2644ecb7?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-blue-600">LOJA</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Loja Premium - 45m²</h3>
+                        <p class="text-gray-500 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Shopping Rio Sul, RJ</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-50">
+                            <span class="text-2xl font-black text-blue-600">R$ 4.500</span>
+                            <span class="text-gray-400 text-sm italic">/mês</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-blue-600">QUIOSQUE</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Ponto Central Corredor</h3>
+                        <p class="text-gray-500 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Barra Shopping, RJ</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-50">
+                            <span class="text-2xl font-black text-blue-600">R$ 2.800</span>
+                            <span class="text-gray-400 text-sm italic">/mês</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-blue-600">ALIMENTAÇÃO</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Espaço Gastronômico</h3>
+                        <p class="text-gray-500 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Norte Shopping, RJ</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-50">
+                            <span class="text-2xl font-black text-blue-600">R$ 7.200</span>
+                            <span class="text-gray-400 text-sm italic">/mês</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <div id="page-login" class="page h-screen bg-slate-900 items-center justify-center">
-        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm mx-auto mt-20">
-            <h2 class="text-2xl font-bold text-center mb-6">Acesso Master</h2>
-            <div class="space-y-4">
-                <input type="email" id="userEmail" placeholder="admin@emx.com" class="w-full border p-3 rounded-lg">
-                <input type="password" id="userPass" placeholder="123456" class="w-full border p-3 rounded-lg">
-                <button onclick="tentarLogin()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold">Acessar Painel</button>
-                <button onclick="irPara('page-home')" class="w-full text-gray-500 text-sm">Voltar</button>
+    <div id="page-login" class="page h-screen bg-slate-900 items-center justify-center px-4">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden">
+            <div class="bg-blue-600 p-10 text-center text-white">
+                <div class="text-3xl font-bold mb-2 tracking-tighter">EMX MASTER</div>
+                <p class="text-blue-100 opacity-70 font-light">Administração do Sistema</p>
+            </div>
+            <div class="p-10 space-y-6">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">E-mail Master</label>
+                    <input type="email" id="userEmail" class="w-full p-4 border border-gray-100 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="admin@emx.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Senha</label>
+                    <input type="password" id="userPass" class="w-full p-4 border border-gray-100 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="••••••••">
+                </div>
+                <button onclick="tentarLogin()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-xl shadow-blue-100 hover:bg-blue-700 transition">Acessar Painel</button>
+                <button onclick="irPara('page-home')" class="w-full text-gray-400 text-sm hover:text-gray-600 transition">Voltar para o site</button>
             </div>
         </div>
     </div>
 
-    <div id="page-admin" class="page h-screen flex">
-        <div class="w-64 bg-slate-900 text-white p-6">
-            <h2 class="text-xl font-bold text-blue-500 mb-10 text-center">EMX MASTER</h2>
-            <nav class="space-y-4">
-                <a href="#" class="block p-3 bg-blue-600 rounded-lg">Dashboard</a>
-                <a href="#" class="block p-3 hover:bg-slate-800 rounded">Minhas Lojas</a>
-                <a href="#" onclick="irPara('page-home')" class="block p-3 text-red-400 mt-20">Sair</a>
+    <div id="page-admin" class="page h-screen flex overflow-hidden">
+        <aside class="w-72 bg-slate-900 text-white flex flex-col">
+            <div class="p-8 text-2xl font-black tracking-tighter border-b border-slate-800 text-blue-500">
+                EMX MASTER
+            </div>
+            <nav class="flex-1 p-6 space-y-3">
+                <a href="#" class="flex items-center gap-3 p-4 bg-blue-600 rounded-2xl font-bold">
+                    <i class="fa-solid fa-gauge-high"></i> Dashboard
+                </a>
+                <a href="#" class="flex items-center gap-3 p-4 hover:bg-slate-800 rounded-2xl text-gray-400 transition">
+                    <i class="fa-solid fa-store"></i> Minhas Lojas
+                </a>
+                <a href="#" class="flex items-center gap-3 p-4 hover:bg-slate-800 rounded-2xl text-gray-400 transition">
+                    <i class="fa-solid fa-building"></i> Shoppings
+                </a>
             </nav>
-        </div>
-        <div class="flex-1 bg-gray-100 p-10 overflow-y-auto">
-            <div class="flex justify-between items-center mb-10">
-                <h1 class="text-3xl font-bold">Gestão de Lojas</h1>
-                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">+ Nova Loja</button>
+            <div class="p-6 border-t border-slate-800">
+                <button onclick="irPara('page-home')" class="flex items-center gap-3 p-4 text-red-400 hover:bg-red-500/10 rounded-2xl w-full transition">
+                    <i class="fa-solid fa-power-off"></i> Sair do Painel
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 bg-gray-50 p-12 overflow-y-auto">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h1 class="text-4xl font-black text-slate-800 tracking-tight">Gestão de Portfólio</h1>
+                    <p class="text-gray-500 mt-1">Bem-vindo, Emmanuel Martins.</p>
+                </div>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 transition">
+                    + Adicionar Imóvel
+                </button>
             </div>
             
-            <div class="bg-white rounded-xl shadow">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                 <table class="w-full text-left">
-                    <tr class="bg-gray-50 border-b">
-                        <th class="p-4">Nome</th>
-                        <th class="p-4">Preço</th>
-                        <th class="p-4">Status</th>
-                    </tr>
-                    <tr>
-                        <td class="p-4">Loja Exemplo 01</td>
-                        <td class="p-4">R$ 3.200</td>
-                        <td class="p-4"><span class="text-green-600 font-bold">Ativo</span></td>
-                    </tr>
+                    <thead class="bg-gray-50 border-b border-gray-100">
+                        <tr class="text-gray-400 text-xs font-black uppercase tracking-widest">
+                            <th class="p-6">Identificação da Loja</th>
+                            <th class="p-6">Shopping / Local</th>
+                            <th class="p-6">Preço Base</th>
+                            <th class="p-6 text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-50">
+                        <tr class="hover:bg-blue-50/30 transition">
+                            <td class="p-6 font-bold text-slate-700">Sala 204 - Ala Norte</td>
+                            <td class="p-6 text-gray-500">Shopping Rio Sul</td>
+                            <td class="p-6 font-bold text-blue-600">R$ 4.500,00</td>
+                            <td class="p-6 text-center">
+                                <span class="bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-xs font-black">PUBLICADO</span>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
-        </div>
+        </main>
     </div>
 
     <script>
         function irPara(idPagina) {
-            // Esconde todas as páginas
-            const paginas = document.querySelectorAll('.page');
-            paginas.forEach(p => {
+            // Esconde TUDO primeiro
+            document.querySelectorAll('.page').forEach(p => {
                 p.classList.remove('page-active');
                 p.classList.remove('flex-active');
             });
 
-            // Mostra a página escolhida
             const destino = document.getElementById(idPagina);
+            
+            // Se for Login ou Admin, usa Flex para o layout não quebrar
             if (idPagina === 'page-login' || idPagina === 'page-admin') {
-                destino.classList.add('flex-active'); // Usa flex para centralizar login e montar dashboard
+                destino.classList.add('flex-active');
             } else {
                 destino.classList.add('page-active');
             }
+            
+            // Rola para o topo sempre que trocar de página
+            window.scrollTo(0,0);
         }
 
         function tentarLogin() {
@@ -110,7 +210,7 @@
             if (email === "admin@emx.com" && pass === "123456") {
                 irPara('page-admin');
             } else {
-                alert("E-mail ou senha incorretos!");
+                alert("🚫 Credenciais Master incorretas. Tente admin@emx.com / 123456");
             }
         }
     </script>
