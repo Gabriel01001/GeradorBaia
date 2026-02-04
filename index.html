@@ -2,86 +2,78 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMX Systems - Gerenciador de Clientes</title>
+    <title>Cadastro de Loja - EMX Systems</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .preview-img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; }
+    </style>
 </head>
-<body class="bg-gray-100 p-4 md:p-8">
+<body class="bg-gray-100 p-5">
 
-    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-        <div class="bg-blue-600 p-6 text-white text-center">
-            <h1 class="text-2xl font-bold uppercase tracking-wider">Gerenciador de Clientes IPTV</h1>
-            <p class="text-sm opacity-80">EMX Systems - Controle Interno</p>
-        </div>
-
-        <div class="p-6 border-b bg-gray-50">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <input id="inputNome" type="text" placeholder="Nome do Cliente" class="p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
-                <input id="inputUser" type="text" placeholder="Usuário/Login" class="p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
-                <input id="inputZap" type="text" placeholder="WhatsApp (só números)" class="p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
-                <button onclick="adicionarCliente()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <i class="fas fa-plus mr-2"></i>Adicionar
-                </button>
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md">
+        <h2 class="text-2xl font-bold mb-6">Cadastrar Nova Loja</h2>
+        
+        <form id="formLoja" class="space-y-4">
+            <div>
+                <label class="block font-medium">Nome da Loja/Espaço</label>
+                <input type="text" class="w-full border p-2 rounded" placeholder="Ex: Sala 204 - Shopping Leblon" required>
             </div>
-        </div>
 
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-gray-200 text-gray-700 uppercase text-xs">
-                        <th class="p-4 border-b">Usuário</th>
-                        <th class="p-4 border-b">Nome / Contato</th>
-                        <th class="p-4 border-b">Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="corpoTabela" class="divide-y divide-gray-100">
-                    </tbody>
-            </table>
-        </div>
+            <div>
+                <label class="block font-medium">Fotos da Loja (Máximo 10)</label>
+                <input type="file" id="fotos" accept="image/*" multiple class="w-full border p-2 rounded">
+                <p id="contador" class="text-sm text-gray-500 mt-1">0 de 10 fotos selecionadas</p>
+                <div id="previewContainer" class="flex flex-wrap gap-2 mt-3"></div>
+            </div>
+
+            <div>
+                <label class="block font-medium">Link do Vídeo (YouTube/Vimeo)</label>
+                <input type="url" class="w-full border p-2 rounded" placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                Salvar Anúncio
+            </button>
+        </form>
     </div>
 
     <script>
-        function adicionarCliente() {
-            const nome = document.getElementById('inputNome').value;
-            const user = document.getElementById('inputUser').value;
-            const zap = document.getElementById('inputZap').value;
+        const inputFotos = document.getElementById('fotos');
+        const previewContainer = document.getElementById('previewContainer');
+        const contador = document.getElementById('contador');
 
-            if (nome === '' || user === '') {
-                alert("Preencha pelo menos o Nome e Usuário!");
+        inputFotos.addEventListener('change', function() {
+            const arquivos = Array.from(this.files);
+            
+            // Lógica do Limite de 10 fotos
+            if (arquivos.length > 10) {
+                alert("Você só pode enviar no máximo 10 fotos!");
+                this.value = ""; // Limpa a seleção
+                previewContainer.innerHTML = "";
+                contador.innerText = "0 de 10 fotos selecionadas";
                 return;
             }
 
-            const tabela = document.getElementById('corpoTabela');
-            const novaLinha = document.createElement('tr');
-            novaLinha.className = "hover:bg-blue-50 transition duration-150";
+            // Atualiza o contador e a pré-visualização
+            contador.innerText = `${arquivos.length} de 10 fotos selecionadas`;
+            previewContainer.innerHTML = ""; // Limpa antes de mostrar as novas
 
-            novaLinha.innerHTML = `
-                <td class="p-4">
-                    <span class="text-blue-600 font-bold block">@${user}</span>
-                    <span class="text-xs text-gray-400">Ativo</span>
-                </td>
-                <td class="p-4">
-                    <div class="font-semibold text-gray-800">${nome}</div>
-                    <div class="text-sm text-green-600 font-medium">
-                        <i class="fab fa-whatsapp mr-1"></i>${zap}
-                    </div>
-                </td>
-                <td class="p-4">
-                    <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </td>
-            `;
+            arquivos.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('preview-img');
+                    previewContainer.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            });
+        });
 
-            tabela.appendChild(novaLinha);
-
-            // Limpar campos
-            document.getElementById('inputNome').value = '';
-            document.getElementById('inputUser').value = '';
-            document.getElementById('inputZap').value = '';
+        document.getElementById('formLoja').onsubmit = (e) => {
+            e.preventDefault();
+            alert("Pronto! Agora o próximo passo é conectar ao Banco de Dados (Supabase) para salvar as informações.");
         }
     </script>
-
 </body>
 </html>
