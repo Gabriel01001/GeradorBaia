@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMX Systems - Portal Completo</title>
+    <title>EMX Systems - Gestão de Vendedores</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Garante que o que não deve aparecer fique escondido */
         .page { display: none !important; }
         .page-active { display: block !important; }
         .flex-active { display: flex !important; }
-        
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)); }
@@ -22,92 +20,72 @@
     <div id="page-home" class="page page-active">
         <nav class="bg-white shadow-sm py-4 px-8 flex justify-between items-center sticky top-0 z-50">
             <div class="text-2xl font-bold text-blue-600 tracking-tighter">EMX<span class="text-gray-800 font-light">Systems</span></div>
-            <button onclick="irPara('page-login')" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg">
-                Entrar
-            </button>
+            <button onclick="irPara('page-login')" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg">Entrar</button>
         </nav>
-
-        <header class="relative h-[450px] flex items-center justify-center text-white">
+        <header class="relative h-[400px] flex items-center justify-center text-white">
             <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1350&q=80" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 hero-gradient"></div>
             <div class="relative z-10 text-center px-4">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4">O melhor ponto para o seu negócio</h1>
-                <p class="text-xl mb-8 text-gray-200 font-light">Encontre lojas e quiosques nos shoppings mais movimentados.</p>
-                <div class="bg-white p-2 rounded-xl shadow-2xl flex flex-col md:flex-row max-w-2xl mx-auto gap-2">
-                    <input type="text" placeholder="Qual shopping ou cidade?" class="flex-1 p-4 text-gray-800 outline-none rounded-lg">
-                    <button class="bg-blue-600 px-8 py-4 rounded-lg font-bold">Buscar</button>
-                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Portal Administrativo EMX</h1>
+                <p class="text-xl text-gray-200">Gerenciamento de Shoppings e Vendedores</p>
             </div>
         </header>
-
-        <main class="max-w-7xl mx-auto py-16 px-8">
-            <h2 class="text-3xl font-bold mb-10 text-center">Destaques da Semana</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1582037928769-181f2644ecb7?auto=format&fit=crop&w=600" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg">Loja Premium - 45m²</h3>
-                        <p class="text-gray-400 text-sm mb-4">Shopping Rio Sul, RJ</p>
-                        <p class="text-blue-600 font-bold">R$ 4.500,00</p>
-                    </div>
-                </div>
-            </div>
-        </main>
     </div>
 
     <div id="page-login" class="page h-screen bg-slate-900 items-center justify-center p-4">
         <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-10 mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-8">Acesso Master</h2>
-            <div class="space-y-6">
+            <h2 class="text-3xl font-bold text-center mb-8">Login Master</h2>
+            <div class="space-y-4">
                 <input type="email" id="userEmail" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500" placeholder="admin@emx.com">
                 <input type="password" id="userPass" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500" placeholder="123456">
-                <button onclick="tentarLogin()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-xl hover:bg-blue-700 transition">Acessar Painel</button>
-                <button onclick="irPara('page-home')" class="w-full text-gray-400 text-sm hover:underline">Voltar para o site</button>
+                <button onclick="tentarLogin()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg">Acessar Painel</button>
+                <button onclick="irPara('page-home')" class="w-full text-gray-400 text-sm">Voltar</button>
             </div>
         </div>
     </div>
 
     <div id="page-admin" class="page h-screen flex overflow-hidden">
         <aside class="w-72 bg-slate-900 text-white flex flex-col p-6 shadow-2xl">
-            <div class="text-xl font-bold mb-10 text-blue-500 tracking-tighter text-center border-b border-slate-800 pb-4">
-                EMX MASTER
-            </div>
+            <div class="text-xl font-bold mb-10 text-blue-500 tracking-tighter text-center border-b border-slate-800 pb-4">EMX MASTER</div>
             <nav class="flex-1 space-y-3">
-                <button onclick="switchTab('tab-lojas')" class="w-full flex items-center gap-3 p-4 bg-slate-800 hover:bg-blue-600 rounded-2xl transition text-left">
+                <button onclick="switchTab('tab-lojas')" class="w-full flex items-center gap-3 p-4 hover:bg-slate-800 rounded-2xl transition text-left text-gray-400 hover:text-white">
                     <i class="fa-solid fa-store"></i> Gerenciar Lojas
                 </button>
-                <button onclick="switchTab('tab-vendedores')" class="w-full flex items-center gap-3 p-4 bg-slate-800 hover:bg-green-600 rounded-2xl transition text-left">
+                <button onclick="switchTab('tab-vendedores')" class="w-full flex items-center gap-3 p-4 bg-blue-600 rounded-2xl transition text-left text-white shadow-lg">
                     <i class="fa-solid fa-user-tie"></i> Vendedores
                 </button>
             </nav>
-            <button onclick="irPara('page-home')" class="text-red-400 p-4 text-left hover:bg-red-500/10 rounded-2xl transition">
-                <i class="fa-solid fa-power-off mr-2"></i> Sair do Painel
-            </button>
+            <button onclick="irPara('page-home')" class="text-red-400 p-4 text-left hover:bg-red-500/10 rounded-2xl transition"><i class="fa-solid fa-power-off mr-2"></i> Sair</button>
         </aside>
 
-        <main class="flex-1 bg-gray-50 p-12 overflow-y-auto">
+        <main class="flex-1 bg-gray-50 p-10 overflow-y-auto">
             
-            <div id="tab-lojas" class="tab-content active">
-                <div class="flex justify-between items-center mb-10">
-                    <h1 class="text-3xl font-bold">Lojas e Imóveis</h1>
-                    <button class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-blue-100">+ Nova Loja</button>
-                </div>
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <p class="text-gray-500">Aqui você gerencia os anúncios que aparecem na Home.</p>
-                </div>
+            <div id="tab-lojas" class="tab-content">
+                <h1 class="text-3xl font-bold mb-6 text-slate-800">Lojas</h1>
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 italic text-gray-400">Gerenciamento de espaços em breve...</div>
             </div>
 
-            <div id="tab-vendedores" class="tab-content">
+            <div id="tab-vendedores" class="tab-content active">
                 <div class="flex justify-between items-center mb-10">
-                    <h1 class="text-3xl font-bold">Gestão de Vendedores</h1>
-                    <button onclick="abrirModal()" class="bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-green-100">+ Novo Vendedor</button>
+                    <div>
+                        <h1 class="text-3xl font-bold text-slate-800">Equipe de Vendas</h1>
+                        <p class="text-gray-500">Cadastre vendedores vinculados a shoppings específicos.</p>
+                    </div>
+                    <button onclick="abrirModal()" class="bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-green-100 hover:bg-green-700 transition">+ Novo Vendedor</button>
                 </div>
-                <div id="listaVendedores" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">EM</div>
-                        <div>
-                            <h3 class="font-bold">Emmanuel Martins</h3>
-                            <p class="text-xs text-gray-400">emmanuel@emx.com</p>
+
+                <div id="listaVendedores" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">EM</div>
+                            <div>
+                                <h3 class="font-bold">Emmanuel Martins</h3>
+                                <p class="text-xs text-gray-400">Master Admin</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <p><strong><i class="fa-solid fa-building mr-2 text-gray-400"></i>Shopping:</strong> Todos</p>
+                            <p><strong><i class="fa-solid fa-phone mr-2 text-gray-400"></i>Tel:</strong> (21) 99999-9999</p>
                         </div>
                     </div>
                 </div>
@@ -115,15 +93,46 @@
         </main>
     </div>
 
-    <div id="modalVendedor" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[100]">
-        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
-            <h3 class="text-2xl font-bold mb-6">Cadastrar Vendedor</h3>
-            <div class="space-y-4">
-                <input type="text" id="vNome" placeholder="Nome do Vendedor" class="w-full p-4 border rounded-xl">
-                <input type="email" id="vEmail" placeholder="E-mail de acesso" class="w-full p-4 border rounded-xl">
-                <button onclick="salvarVendedor()" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold shadow-lg">Salvar Acesso</button>
-                <button onclick="fecharModal()" class="w-full text-gray-400">Cancelar</button>
-            </div>
+    <div id="modalVendedor" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[100] px-4 backdrop-blur-sm">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-lg">
+            <h3 class="text-2xl font-bold mb-6 text-slate-800">Cadastrar Novo Vendedor</h3>
+            
+            <form id="formVendedor" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="md:col-span-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase ml-1">Nome Completo</label>
+                    <input type="text" id="vNome" required class="w-full p-3 bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-green-500 transition" placeholder="Ex: João Silva">
+                </div>
+                
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase ml-1">Shopping Vinculado</label>
+                    <select id="vShopping" class="w-full p-3 bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-green-500 transition">
+                        <option value="Rio Sul">Shopping Rio Sul</option>
+                        <option value="Barra Shopping">Barra Shopping</option>
+                        <option value="Norte Shopping">Norte Shopping</option>
+                        <option value="Shopping Leblon">Shopping Leblon</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase ml-1">Telefone (WhatsApp)</label>
+                    <input type="text" id="vTelefone" required class="w-full p-3 bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-green-500 transition" placeholder="(21) 90000-0000">
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase ml-1">Usuário (Login)</label>
+                    <input type="text" id="vUser" required class="w-full p-3 bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-green-500 transition" placeholder="joao.vendas">
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase ml-1">Senha</label>
+                    <input type="password" id="vSenha" required class="w-full p-3 bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-green-500 transition" placeholder="••••••">
+                </div>
+
+                <div class="md:col-span-2 mt-4 space-y-3">
+                    <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-green-700 transition">Finalizar Cadastro</button>
+                    <button type="button" onclick="fecharModal()" class="w-full text-gray-400 font-medium hover:text-gray-600">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -133,7 +142,6 @@
             const d = document.getElementById(id);
             if(id === 'page-login' || id === 'page-admin') d.classList.add('flex-active');
             else d.classList.add('page-active');
-            window.scrollTo(0,0);
         }
 
         function switchTab(id) {
@@ -151,20 +159,33 @@
         function abrirModal() { document.getElementById('modalVendedor').classList.remove('hidden'); }
         function fecharModal() { document.getElementById('modalVendedor').classList.add('hidden'); }
 
-        function salvarVendedor() {
-            const n = document.getElementById('vNome').value;
-            const e = document.getElementById('vEmail').value;
-            if(!n || !e) return alert("Preencha tudo!");
-            
-            const card = `<div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold">${n.charAt(0)}</div>
-                <div><h3 class="font-bold">${n}</h3><p class="text-xs text-gray-400">${e}</p></div>
-            </div>`;
+        document.getElementById('formVendedor').onsubmit = function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('vNome').value;
+            const shopping = document.getElementById('vShopping').value;
+            const tel = document.getElementById('vTelefone').value;
+            const user = document.getElementById('vUser').value;
+
+            const card = `
+                <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold">${nome.charAt(0).toUpperCase()}</div>
+                        <div>
+                            <h3 class="font-bold">${nome}</h3>
+                            <p class="text-xs text-gray-400">Usuário: ${user}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><strong><i class="fa-solid fa-building mr-2 text-gray-400"></i>Shopping:</strong> ${shopping}</p>
+                        <p><strong><i class="fa-solid fa-phone mr-2 text-gray-400"></i>Tel:</strong> ${tel}</p>
+                    </div>
+                </div>
+            `;
             
             document.getElementById('listaVendedores').innerHTML += card;
             fecharModal();
-            alert("Vendedor salvo!");
-        }
+            this.reset();
+        };
     </script>
 </body>
 </html>
