@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMX Systems - Gestão de Vendas</title>
+    <title>EMX Systems - Gestão de Imóveis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -12,6 +12,7 @@
         .flex-active { display: flex !important; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)); }
     </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-900">
@@ -19,118 +20,146 @@
     <div id="page-home" class="page page-active">
         <nav class="bg-white shadow-sm py-4 px-8 flex justify-between items-center sticky top-0 z-50">
             <div class="text-2xl font-bold text-blue-600 tracking-tighter">EMX<span class="text-gray-800 font-light">Systems</span></div>
-            <button onclick="irPara('page-login')" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:bg-blue-700 transition">Entrar</button>
+            <button onclick="irPara('page-login')" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg">Entrar</button>
         </nav>
-        <div class="h-[300px] bg-slate-800 flex items-center justify-center text-white">
-            <h1 class="text-4xl font-bold italic opacity-20">EMX SYSTEMS - PORTAL DE IMÓVEIS</h1>
-        </div>
+
+        <header class="relative h-[500px] flex items-center justify-center text-white">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1350&q=80" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Encontre o ponto ideal</h1>
+                <p class="text-xl mb-8 text-gray-200">Lojas, quiosques e espaços em shoppings e centros comerciais.</p>
+                <div class="bg-white p-2 rounded-2xl shadow-2xl flex flex-col md:flex-row max-w-3xl mx-auto gap-2">
+                    <input type="text" placeholder="Shopping ou Cidade..." class="flex-1 p-4 text-gray-800 outline-none rounded-xl">
+                    <button class="bg-blue-600 px-10 py-4 rounded-xl font-bold hover:bg-blue-700 transition">Buscar Agora</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto py-16 px-8">
+            <h2 class="text-3xl font-bold mb-10">Destaques</h2>
+            <div id="vitrineLojas" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 group">
+                    <div class="h-56 bg-gray-200 relative">
+                        <img src="https://images.unsplash.com/photo-1582037928769-181f2644ecb7?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">LOJA</span>
+                    </div>
+                    <div class="p-6 text-left">
+                        <h3 class="font-bold text-lg mb-1">Espaço Premium - 45m²</h3>
+                        <p class="text-gray-400 text-sm mb-4"><i class="fa-solid fa-location-dot mr-1"></i> Shopping Rio Sul, RJ</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-50">
+                            <span class="text-blue-600 font-bold">R$ 4.500/mês</span>
+                            <button class="text-gray-800 font-bold text-sm underline">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <div id="page-login" class="page h-screen bg-slate-900 items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-10">
-            <h2 class="text-3xl font-bold text-center mb-8">Acesso ao Sistema</h2>
+        <div class="bg-white w-full max-w-md rounded-[40px] shadow-2xl p-12 mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Login Portal</h2>
             <div class="space-y-4">
-                <input type="email" id="userEmail" class="w-full p-4 border rounded-xl outline-none" placeholder="E-mail">
-                <input type="password" id="userPass" class="w-full p-4 border rounded-xl outline-none" placeholder="Senha">
-                <button onclick="tentarLogin()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-blue-700 transition">Entrar</button>
-                <button onclick="irPara('page-home')" class="w-full text-gray-400 text-sm">Voltar</button>
+                <input type="email" id="userEmail" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none" placeholder="E-mail">
+                <input type="password" id="userPass" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none" placeholder="Senha">
+                <button onclick="tentarLogin()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-xl hover:bg-blue-700 transition">Entrar no Sistema</button>
+                <button onclick="irPara('page-home')" class="w-full text-gray-400 text-sm">Voltar ao site</button>
             </div>
         </div>
     </div>
 
-    <div id="page-vendedor" class="page h-screen flex overflow-hidden">
-        <aside class="w-64 bg-slate-900 text-white p-6 flex flex-col shadow-xl">
-            <div class="text-lg font-bold mb-10 text-green-400">PAINEL VENDEDOR</div>
-            <nav class="flex-1 space-y-3">
-                <button onclick="switchTabVendedor('v-minhas-lojas')" class="w-full flex items-center gap-3 p-4 bg-slate-800 rounded-2xl text-white text-left">
-                    <i class="fa-solid fa-list"></i> Minhas Lojas
-                </button>
-                <button onclick="switchTabVendedor('v-nova-loja')" class="w-full flex items-center gap-3 p-4 hover:bg-green-600 rounded-2xl text-white text-left transition">
-                    <i class="fa-solid fa-plus-circle"></i> Cadastrar Loja
-                </button>
+    <div id="page-master" class="page h-screen flex overflow-hidden">
+        <aside class="w-72 bg-slate-900 text-white p-6 flex flex-col shadow-2xl">
+            <div class="text-xl font-bold mb-10 text-blue-500 text-center border-b border-slate-800 pb-4">EMX MASTER</div>
+            <nav class="flex-1 space-y-2">
+                <button onclick="switchTab('master-lojas')" class="w-full flex items-center gap-3 p-4 hover:bg-slate-800 rounded-2xl transition text-left"><i class="fa-solid fa-store"></i> Ver Lojas</button>
+                <button onclick="switchTab('master-vendedores')" class="w-full flex items-center gap-3 p-4 bg-blue-600 rounded-2xl transition text-left text-white shadow-lg"><i class="fa-solid fa-user-tie"></i> Vendedores</button>
             </nav>
             <button onclick="irPara('page-home')" class="text-red-400 p-4 text-left hover:bg-red-500/10 rounded-2xl transition"><i class="fa-solid fa-power-off mr-2"></i> Sair</button>
         </aside>
 
-        <main class="flex-1 bg-gray-50 p-10 overflow-y-auto">
-            
-            <div id="v-minhas-lojas" class="tab-content-v active">
-                <h1 class="text-3xl font-bold mb-6">Minhas Lojas Cadastradas</h1>
-                <div id="gridLojasVendedor" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-gray-200 border-2 border-dashed border-gray-300 rounded-3xl h-64 flex items-center justify-center text-gray-400">
-                        Nenhuma loja cadastrada ainda.
+        <main class="flex-1 bg-gray-50 p-12 overflow-y-auto">
+            <div id="master-lojas" class="tab-content">
+                <h1 class="text-3xl font-bold mb-10 text-slate-800">Todas as Lojas</h1>
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm text-gray-400 italic">Visualização global de imóveis.</div>
+            </div>
+
+            <div id="master-vendedores" class="tab-content active">
+                <div class="flex justify-between items-center mb-10">
+                    <h1 class="text-3xl font-bold text-slate-800">Gerenciar Vendedores</h1>
+                    <button onclick="abrirModalVendedor()" class="bg-green-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-green-700 transition shadow-lg shadow-green-100">+ Novo Vendedor</button>
+                </div>
+                <div id="listaVendedores" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="page-vendedor" class="page h-screen flex overflow-hidden">
+        <aside class="w-72 bg-slate-900 text-white p-6 flex flex-col shadow-2xl border-r border-slate-800">
+            <div class="text-xl font-bold mb-10 text-green-500 text-center border-b border-slate-800 pb-4">VENDEDOR EMX</div>
+            <nav class="flex-1 space-y-2">
+                <button onclick="switchTabVendedor('v-minhas-lojas')" class="w-full flex items-center gap-3 p-4 bg-slate-800 rounded-2xl transition text-left"><i class="fa-solid fa-list"></i> Meus Imóveis</button>
+                <button onclick="switchTabVendedor('v-cadastrar')" class="w-full flex items-center gap-3 p-4 hover:bg-green-600 rounded-2xl transition text-left text-white"><i class="fa-solid fa-plus-circle"></i> Cadastrar Loja</button>
+            </nav>
+            <button onclick="irPara('page-home')" class="text-red-400 p-4 text-left hover:bg-red-500/10 rounded-2xl transition"><i class="fa-solid fa-power-off mr-2"></i> Sair</button>
+        </aside>
+
+        <main class="flex-1 bg-gray-50 p-12 overflow-y-auto">
+            <div id="v-minhas-lojas" class="tab-content-v active">
+                <h1 class="text-3xl font-bold mb-10">Minhas Lojas</h1>
+                <div id="gradeLojasVendedor" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-200 border-2 border-dashed border-gray-300 rounded-3xl h-64 flex items-center justify-center text-gray-400">Sem lojas no momento</div>
                 </div>
             </div>
 
-            <div id="v-nova-loja" class="tab-content-v">
-                <h1 class="text-3xl font-bold mb-6">Cadastrar Novo Espaço</h1>
-                <form id="formNovaLoja" class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    
-                    <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome do Shopping</label>
-                            <input type="text" id="lojaShopping" required class="w-full p-3 bg-gray-50 border rounded-xl" placeholder="Ex: Barra Shopping">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Endereço Completo</label>
-                            <input type="text" id="lojaEndereco" required class="w-full p-3 bg-gray-50 border rounded-xl" placeholder="Rua, Número, Bairro...">
-                        </div>
+            <div id="v-cadastrar" class="tab-content-v">
+                <h1 class="text-3xl font-bold mb-8">Cadastrar Novo Espaço</h1>
+                <form id="formNovaLoja" class="bg-white p-10 rounded-[40px] shadow-sm border border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div><label class="block text-xs font-bold text-gray-400 uppercase mb-2">Shopping</label><input type="text" id="lShopping" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none" placeholder="Ex: Norte Shopping"></div>
+                        <div><label class="block text-xs font-bold text-gray-400 uppercase mb-2">Endereço Completo</label><input type="text" id="lEndereco" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none" placeholder="Av. Dom Helder Câmara, 5474"></div>
                     </div>
-
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">Metros Quadrados (m²)</label>
-                        <input type="number" id="lojaM2" required class="w-full p-3 bg-gray-50 border rounded-xl" placeholder="Ex: 45">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">Tipo de Espaço</label>
-                        <select id="lojaTipo" onchange="checkAlimentacao(this.value)" class="w-full p-3 bg-gray-50 border rounded-xl">
-                            <option value="Loja">Loja Comercial</option>
-                            <option value="Quiosque">Quiosque</option>
-                        </select>
-                    </div>
-
-                    <div id="boxAlimentacao" class="md:col-span-2 flex items-center gap-3 bg-blue-50 p-4 rounded-xl">
-                        <input type="checkbox" id="lojaAlimentacao" class="w-5 h-5">
-                        <label for="lojaAlimentacao" class="text-sm font-bold text-blue-800">Este espaço faz parte da Praça de Alimentação?</label>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">Foto Principal + 9 fotos</label>
-                        <input type="file" multiple accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">Vídeo 360° (Curto)</label>
-                        <input type="file" accept="video/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
-                    </div>
-
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-bold text-gray-700 mb-1">WhatsApp para Contato (Vendedor)</label>
-                        <input type="text" id="lojaZap" required class="w-full p-3 bg-gray-50 border border-blue-200 rounded-xl font-bold text-blue-600" placeholder="(21) 99999-9999">
-                    </div>
-
-                    <div class="md:col-span-2 pt-4">
-                        <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:bg-green-700 transition">Publicar Loja no Portal</button>
-                    </div>
+                    <div><label class="block text-xs font-bold text-gray-400 uppercase mb-2">Tamanho (m²)</label><input type="number" id="lM2" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none" placeholder="Ex: 50"></div>
+                    <div><label class="block text-xs font-bold text-gray-400 uppercase mb-2">Tipo de Espaço</label><select id="lTipo" onchange="toggleAlimentacao(this.value)" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none"><option value="Loja">Loja</option><option value="Quiosque">Quiosque</option></select></div>
+                    <div id="opcAlimentacao" class="md:col-span-2 flex items-center gap-3 bg-blue-50 p-4 rounded-2xl"><input type="checkbox" id="lAlimentacao" class="w-5 h-5"> <label class="text-sm font-bold text-blue-700">Faz parte da Praça de Alimentação?</label></div>
+                    <div><label class="block text-xs font-bold text-gray-400 uppercase mb-2">Fotos (Principal + 9)</label><input type="file" multiple accept="image/*" class="w-full text-sm"></div>
+                    <div><label class="block text-xs font-bold text-gray-400 uppercase mb-2">Vídeo 360° (Curto)</label><input type="file" accept="video/*" class="w-full text-sm"></div>
+                    <div class="md:col-span-2"><label class="block text-xs font-bold text-gray-400 uppercase mb-2">WhatsApp do Vendedor</label><input type="text" id="lZap" required class="w-full p-4 bg-blue-50 border border-blue-100 text-blue-700 font-bold rounded-2xl outline-none"></div>
+                    <div class="md:col-span-2"><button type="submit" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-bold shadow-xl hover:bg-blue-700 transition">Publicar Anúncio</button></div>
                 </form>
             </div>
         </main>
     </div>
 
-    <div id="page-admin" class="page h-screen flex">
-        <aside class="w-64 bg-slate-900 text-white p-6">
-            <h2 class="text-xl font-bold mb-10 text-blue-500 uppercase">Master Admin</h2>
-            <button onclick="irPara('page-home')" class="text-red-400">Sair</button>
-        </aside>
-        <main class="p-10"><h1>Painel Master - Gestão Global</h1></main>
+    <div id="modalVendedor" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[100] p-4 backdrop-blur-sm">
+        <div class="bg-white p-10 rounded-[40px] shadow-2xl w-full max-w-lg">
+            <h3 class="text-2xl font-bold mb-8">Novo Vendedor</h3>
+            <form id="formVendedor" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="md:col-span-2"><input type="text" id="vNome" placeholder="Nome Completo" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none"></div>
+                <div class="md:col-span-2"><input type="text" id="vShopping" placeholder="Shopping Responsável" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none"></div>
+                <div class="md:col-span-2"><input type="text" id="vUser" placeholder="Usuário (Login)" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none"></div>
+                <div><input type="password" id="vSenha" placeholder="Senha" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none"></div>
+                <div><input type="text" id="vTel" placeholder="Telefone/Zap" required class="w-full p-4 bg-gray-50 border rounded-2xl outline-none"></div>
+                <div class="md:col-span-2 mt-4 space-y-3">
+                    <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-green-100 hover:bg-green-700 transition">Salvar Vendedor</button>
+                    <button type="button" onclick="fecharModalVendedor()" class="w-full text-gray-400">Cancelar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
         function irPara(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('page-active', 'flex-active'));
             const d = document.getElementById(id);
-            if(id === 'page-login' || id === 'page-vendedor' || id === 'page-admin') d.classList.add('flex-active');
-            else d.classList.add('page-active');
+            if(id !== 'page-home') d.classList.add('flex-active'); else d.classList.add('page-active');
+        }
+
+        function switchTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
 
         function switchTabVendedor(id) {
@@ -138,49 +167,58 @@
             document.getElementById(id).classList.add('active');
         }
 
-        function checkAlimentacao(valor) {
-            const box = document.getElementById('boxAlimentacao');
-            box.style.display = (valor === 'Loja') ? 'flex' : 'none';
+        function toggleAlimentacao(val) {
+            document.getElementById('opcAlimentacao').style.display = (val === 'Loja') ? 'flex' : 'none';
         }
+
+        function abrirModalVendedor() { document.getElementById('modalVendedor').classList.remove('hidden'); }
+        function fecharModalVendedor() { document.getElementById('modalVendedor').classList.add('hidden'); }
 
         function tentarLogin() {
             const e = document.getElementById('userEmail').value;
-            if(e === "admin@emx.com") {
-                irPara('page-admin');
-            } else {
-                // Simula que qualquer outro login cai no painel do vendedor
+            const p = document.getElementById('userPass').value;
+            if(e === "admin@emx.com" && p === "123456") irPara('page-master');
+            else {
                 irPara('page-vendedor');
-                document.getElementById('lojaZap').value = "(21) 98888-7777"; // Simula preenchimento automático do zap do vendedor
+                document.getElementById('lZap').value = "(21) 99999-8888"; // Zap automático do vendedor logado
             }
         }
 
+        document.getElementById('formVendedor').onsubmit = function(e) {
+            e.preventDefault();
+            const n = document.getElementById('vNome').value;
+            const s = document.getElementById('vShopping').value;
+            const u = document.getElementById('vUser').value;
+            const t = document.getElementById('vTel').value;
+
+            const card = `<div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">${n.charAt(0)}</div>
+                    <div><h3 class="font-bold">${n}</h3><p class="text-xs text-gray-400">${u}</p></div>
+                </div>
+                <p class="text-sm"><i class="fa-solid fa-building mr-2 text-gray-300"></i>${s}</p>
+                <p class="text-sm mt-1"><i class="fa-solid fa-phone mr-2 text-gray-300"></i>${t}</p>
+            </div>`;
+            document.getElementById('listaVendedores').innerHTML += card;
+            fecharModalVendedor();
+            this.reset();
+        };
+
         document.getElementById('formNovaLoja').onsubmit = function(e) {
             e.preventDefault();
-            const shopping = document.getElementById('lojaShopping').value;
-            const m2 = document.getElementById('lojaM2').value;
-            const tipo = document.getElementById('lojaTipo').value;
+            const shop = document.getElementById('lShopping').value;
+            const m2 = document.getElementById('lM2').value;
+            const tipo = document.getElementById('lTipo').value;
 
-            const card = `
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-                    <div class="h-40 bg-gray-200 flex items-center justify-center text-gray-400">IMAGEM</div>
-                    <div class="p-5">
-                        <h3 class="font-bold">${tipo} - ${m2}m²</h3>
-                        <p class="text-xs text-gray-500"><i class="fa-solid fa-building mr-1"></i> ${shopping}</p>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">EM ANÁLISE</span>
-                            <button class="text-blue-600 text-xs font-bold">Ver Detalhes</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            const grid = document.getElementById('gridLojasVendedor');
-            if(grid.innerText.includes('Nenhuma loja')) grid.innerHTML = "";
-            grid.innerHTML += card;
-            
-            alert("Sucesso! Loja enviada para o banco de dados.");
+            const card = `<div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="h-40 bg-gray-100 flex items-center justify-center text-gray-400 italic font-bold uppercase">${tipo}</div>
+                <div class="p-5"><h3 class="font-bold">${m2}m² - ${shop}</h3><p class="text-xs text-green-600 font-bold mt-2 uppercase">Publicado</p></div>
+            </div>`;
+            const grade = document.getElementById('gradeLojasVendedor');
+            if(grade.innerText.includes('Sem lojas')) grade.innerHTML = "";
+            grade.innerHTML += card;
+            alert("Sua loja foi publicada com sucesso!");
             switchTabVendedor('v-minhas-lojas');
-            this.reset();
         };
     </script>
 </body>
