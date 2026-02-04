@@ -2,78 +2,145 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Loja - EMX Systems</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMX Lojas - Encontre seu espaço</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .preview-img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-gray-100 p-5">
+<body class="bg-gray-50 font-sans">
 
-    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md">
-        <h2 class="text-2xl font-bold mb-6">Cadastrar Nova Loja</h2>
+    <nav class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div class="text-2xl font-bold text-blue-600 tracking-tight">EMX<span class="text-gray-800 text-lg">Systems</span></div>
+        <div class="hidden md:flex space-x-8 text-gray-600 font-medium">
+            <a href="#" class="hover:text-blue-600 transition">Shoppings</a>
+            <a href="#" class="hover:text-blue-600 transition">Lojas</a>
+            <a href="#" class="hover:text-blue-600 transition">Anunciar</a>
+        </div>
+        <button class="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
+            Entrar
+        </button>
+    </nav>
+
+    <section class="relative h-[500px] flex items-center justify-center text-white">
+        <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+             class="absolute inset-0 w-full h-full object-cover brightness-50" alt="Shopping Center">
         
-        <form id="formLoja" class="space-y-4">
-            <div>
-                <label class="block font-medium">Nome da Loja/Espaço</label>
-                <input type="text" class="w-full border p-2 rounded" placeholder="Ex: Sala 204 - Shopping Leblon" required>
-            </div>
-
-            <div>
-                <label class="block font-medium">Fotos da Loja (Máximo 10)</label>
-                <input type="file" id="fotos" accept="image/*" multiple class="w-full border p-2 rounded">
-                <p id="contador" class="text-sm text-gray-500 mt-1">0 de 10 fotos selecionadas</p>
-                <div id="previewContainer" class="flex flex-wrap gap-2 mt-3"></div>
-            </div>
-
-            <div>
-                <label class="block font-medium">Link do Vídeo (YouTube/Vimeo)</label>
-                <input type="url" class="w-full border p-2 rounded" placeholder="https://www.youtube.com/watch?v=...">
-            </div>
-
-            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">
-                Salvar Anúncio
-            </button>
-        </form>
-    </div>
-
-    <script>
-        const inputFotos = document.getElementById('fotos');
-        const previewContainer = document.getElementById('previewContainer');
-        const contador = document.getElementById('contador');
-
-        inputFotos.addEventListener('change', function() {
-            const arquivos = Array.from(this.files);
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">O lugar ideal para o seu negócio</h1>
+            <p class="text-lg md:text-xl mb-8 text-gray-200">Encontre lojas e quiosques nos melhores shoppings do Brasil.</p>
             
-            // Lógica do Limite de 10 fotos
-            if (arquivos.length > 10) {
-                alert("Você só pode enviar no máximo 10 fotos!");
-                this.value = ""; // Limpa a seleção
-                previewContainer.innerHTML = "";
-                contador.innerText = "0 de 10 fotos selecionadas";
-                return;
-            }
+            <div class="bg-white p-2 rounded-xl shadow-2xl flex flex-col md:flex-row max-w-3xl mx-auto gap-2">
+                <input type="text" placeholder="Cidade ou Shopping..." class="flex-1 p-4 text-gray-800 outline-none rounded-lg">
+                <select class="p-4 text-gray-600 border-l border-gray-100 outline-none">
+                    <option>Tipo de Imóvel</option>
+                    <option>Loja</option>
+                    <option>Quiosque</option>
+                </select>
+                <button class="bg-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-700 transition">
+                    Buscar
+                </button>
+            </div>
+        </div>
+    </section>
 
-            // Atualiza o contador e a pré-visualização
-            contador.innerText = `${arquivos.length} de 10 fotos selecionadas`;
-            previewContainer.innerHTML = ""; // Limpa antes de mostrar as novas
+    <section class="max-w-7xl mx-auto py-12 px-6">
+        <div class="flex flex-wrap justify-center gap-4">
+            <button class="bg-white border hover:border-blue-600 px-6 py-3 rounded-full shadow-sm flex items-center gap-2 transition">
+                <i class="fa-solid fa-store text-blue-500"></i> Lojas de Rua
+            </button>
+            <button class="bg-white border hover:border-blue-600 px-6 py-3 rounded-full shadow-sm flex items-center gap-2 transition">
+                <i class="fa-solid fa-building text-blue-500"></i> Shoppings
+            </button>
+            <button class="bg-white border hover:border-blue-600 px-6 py-3 rounded-full shadow-sm flex items-center gap-2 transition">
+                <i class="fa-solid fa-ice-cream text-blue-500"></i> Quiosques
+            </button>
+        </div>
+    </section>
 
-            arquivos.forEach(file => {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('preview-img');
-                    previewContainer.appendChild(img);
-                }
-                reader.readAsDataURL(file);
-            });
-        });
+    <section class="max-w-7xl mx-auto py-8 px-6">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Destaques da semana</h2>
+                <p class="text-gray-500">As melhores oportunidades de locação.</p>
+            </div>
+            <a href="#" class="text-blue-600 font-semibold hover:underline">Ver todas</a>
+        </div>
 
-        document.getElementById('formLoja').onsubmit = (e) => {
-            e.preventDefault();
-            alert("Pronto! Agora o próximo passo é conectar ao Banco de Dados (Supabase) para salvar as informações.");
-        }
-    </script>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group">
+                <div class="relative h-64">
+                    <img src="https://images.unsplash.com/photo-1582037928769-181f2644ecb7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Loja">
+                    <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Disponível</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-gray-800">Loja Premium - 45m²</h3>
+                        <span class="text-blue-600 font-bold">R$ 4.500/mês</span>
+                    </div>
+                    <p class="text-gray-500 flex items-center gap-1 text-sm mb-4">
+                        <i class="fa-solid fa-location-dot"></i> Shopping Rio Sul, RJ
+                    </p>
+                    <div class="flex gap-4 border-t pt-4 text-gray-600 text-sm">
+                        <span><i class="fa-solid fa-image"></i> 10 fotos</span>
+                        <span><i class="fa-solid fa-video"></i> Vídeo tour</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group">
+                <div class="relative h-64">
+                    <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Loja">
+                    <span class="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Novidade</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-gray-800">Quiosque Central</h3>
+                        <span class="text-blue-600 font-bold">R$ 2.800/mês</span>
+                    </div>
+                    <p class="text-gray-500 flex items-center gap-1 text-sm mb-4">
+                        <i class="fa-solid fa-location-dot"></i> Barra Shopping, RJ
+                    </p>
+                    <div class="flex gap-4 border-t pt-4 text-gray-600 text-sm">
+                        <span><i class="fa-solid fa-image"></i> 8 fotos</span>
+                        <span><i class="fa-solid fa-video"></i> Vídeo tour</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group">
+                <div class="relative h-64">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Loja">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-gray-800">Espaço Praça de Alim.</h3>
+                        <span class="text-blue-600 font-bold">R$ 7.200/mês</span>
+                    </div>
+                    <p class="text-gray-500 flex items-center gap-1 text-sm mb-4">
+                        <i class="fa-solid fa-location-dot"></i> Norte Shopping, RJ
+                    </p>
+                    <div class="flex gap-4 border-t pt-4 text-gray-600 text-sm">
+                        <span><i class="fa-solid fa-image"></i> 10 fotos</span>
+                        <span><i class="fa-solid fa-video"></i> Vídeo tour</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-6 mt-12">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="mb-4">© 2026 EMX Systems - Todos os direitos reservados.</p>
+            <div class="flex justify-center gap-6">
+                <a href="#" class="hover:text-white">Privacidade</a>
+                <a href="#" class="hover:text-white">Termos de Uso</a>
+                <a href="#" class="hover:text-white">Contato</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
