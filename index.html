@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMX Systems - Gerenciador de Clientes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
 
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+        <div class="bg-blue-600 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold uppercase tracking-wider">Gerenciador de Clientes IPTV</h1>
+            <p class="text-sm opacity-80">EMX Systems - Controle Interno</p>
+        </div>
+
+        <div class="p-6 border-b bg-gray-50">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input id="inputNome" type="text" placeholder="Nome do Cliente" class="p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
+                <input id="inputUser" type="text" placeholder="Usuário/Login" class="p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
+                <input id="inputZap" type="text" placeholder="WhatsApp (só números)" class="p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
+                <button onclick="adicionarCliente()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    <i class="fas fa-plus mr-2"></i>Adicionar
+                </button>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-700 uppercase text-xs">
+                        <th class="p-4 border-b">Usuário</th>
+                        <th class="p-4 border-b">Nome / Contato</th>
+                        <th class="p-4 border-b">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="corpoTabela" class="divide-y divide-gray-100">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function adicionarCliente() {
+            const nome = document.getElementById('inputNome').value;
+            const user = document.getElementById('inputUser').value;
+            const zap = document.getElementById('inputZap').value;
+
+            if (nome === '' || user === '') {
+                alert("Preencha pelo menos o Nome e Usuário!");
+                return;
+            }
+
+            const tabela = document.getElementById('corpoTabela');
+            const novaLinha = document.createElement('tr');
+            novaLinha.className = "hover:bg-blue-50 transition duration-150";
+
+            novaLinha.innerHTML = `
+                <td class="p-4">
+                    <span class="text-blue-600 font-bold block">@${user}</span>
+                    <span class="text-xs text-gray-400">Ativo</span>
+                </td>
+                <td class="p-4">
+                    <div class="font-semibold text-gray-800">${nome}</div>
+                    <div class="text-sm text-green-600 font-medium">
+                        <i class="fab fa-whatsapp mr-1"></i>${zap}
+                    </div>
+                </td>
+                <td class="p-4">
+                    <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            `;
+
+            tabela.appendChild(novaLinha);
+
+            // Limpar campos
+            document.getElementById('inputNome').value = '';
+            document.getElementById('inputUser').value = '';
+            document.getElementById('inputZap').value = '';
+        }
+    </script>
+
+</body>
+</html>
