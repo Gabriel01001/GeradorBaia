@@ -3,173 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Master - EMX Systems</title>
+    <title>EMX Lojas - Portal Master</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page { display: none; }
+        .page.active { display: block; }
+        .preview-img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+    </style>
 </head>
-<body class="bg-gray-100 flex h-screen overflow-hidden">
+<body class="bg-gray-50 font-sans">
 
-    <aside class="w-64 bg-slate-900 text-white flex-shrink-0 hidden md:flex flex-col">
-        <div class="p-6 text-2xl font-bold border-b border-slate-800">
-            EMX <span class="text-blue-500 text-sm italic">Master</span>
-        </div>
-        <nav class="flex-1 p-4 space-y-2">
-            <a href="#" class="flex items-center gap-3 p-3 bg-blue-600 rounded-lg"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            <a href="#" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition"><i class="fa-solid fa-store"></i> Gerenciar Lojas</a>
-            <a href="#" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition"><i class="fa-solid fa-building"></i> Shoppings</a>
-            <a href="#" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition"><i class="fa-solid fa-users"></i> Usuários</a>
+    <section id="page-home" class="page active">
+        <nav class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+            <div class="text-2xl font-bold text-blue-600">EMX<span class="text-gray-800 text-lg font-normal">Systems</span></div>
+            <button onclick="showPage('page-login')" class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold hover:bg-blue-700 transition">
+                Entrar
+            </button>
         </nav>
-        <div class="p-4 border-t border-slate-800">
-            <button class="flex items-center gap-3 p-3 text-red-400 hover:text-red-300 w-full"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
-        </div>
-    </aside>
 
-    <main class="flex-1 flex flex-col overflow-y-auto">
-        
-        <header class="bg-white shadow-sm p-4 flex justify-between items-center px-8">
-            <h1 class="text-xl font-semibold text-gray-800">Gerenciamento de Imóveis</h1>
-            <div class="flex items-center gap-4">
-                <span class="text-sm text-gray-500">Olá, Emmanuel Martins</span>
-                <img src="https://ui-avatars.com/api/?name=Emmanuel+Martins&background=0D8ABC&color=fff" class="w-10 h-10 rounded-full">
+        <header class="relative h-[450px] flex items-center justify-center text-white">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1350&q=80" class="absolute inset-0 w-full h-full object-cover brightness-50">
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-shadow-lg">Encontre sua Loja no Shopping</h1>
+                <p class="text-lg text-gray-200 mb-8">A plataforma líder para locação comercial da EMX Systems.</p>
+                <div class="bg-white p-2 rounded-xl shadow-2xl flex flex-col md:flex-row max-w-2xl mx-auto gap-2">
+                    <input type="text" placeholder="Buscar Shopping..." class="flex-1 p-4 text-gray-800 outline-none">
+                    <button class="bg-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-700">Buscar</button>
+                </div>
             </div>
         </header>
 
-        <div class="p-8 space-y-8">
-            
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-gray-800">Lojas Cadastradas</h2>
-                <button onclick="document.getElementById('modalCadastro').classList.remove('hidden')" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
-                    + Nova Loja
-                </button>
+        <main class="max-w-7xl mx-auto py-12 px-6">
+            <h2 class="text-2xl font-bold mb-8">Destaques Disponíveis</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1582037928769-181f2644ecb7?auto=format&fit=crop&w=800&q=60" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl">Loja Premium - 45m²</h3>
+                        <p class="text-gray-500 text-sm mb-4"><i class="fa-solid fa-location-dot"></i> Shopping Rio Sul</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">R$ 4.500/mês</span>
+                            <button class="text-sm bg-gray-100 px-3 py-1 rounded">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section id="page-login" class="page bg-slate-900 h-screen flex items-center justify-center">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
+            <div class="bg-blue-600 p-8 text-center text-white">
+                <div class="text-2xl font-bold mb-1">EMX Master</div>
+                <p class="opacity-80">Acesso Restrito</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="p-8 space-y-6">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">E-mail Master</label>
+                    <input type="email" id="email" required class="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500" placeholder="admin@emx.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Senha</label>
+                    <input type="password" id="password" required class="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500" placeholder="123456">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold shadow-lg hover:bg-blue-700">Entrar no Painel</button>
+                <button type="button" onclick="showPage('page-home')" class="w-full text-gray-500 text-sm mt-4">Voltar para a Home</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="page-admin" class="page flex h-screen overflow-hidden">
+        <aside class="w-64 bg-slate-900 text-white p-6 flex flex-col">
+            <div class="text-xl font-bold mb-10 text-blue-500">EMX MASTER</div>
+            <nav class="flex-1 space-y-4">
+                <a href="#" class="block p-3 bg-blue-600 rounded-lg"><i class="fa-solid fa-home mr-2"></i> Dashboard</a>
+                <a href="#" class="block p-3 hover:bg-slate-800 rounded-lg"><i class="fa-solid fa-plus mr-2"></i> Nova Loja</a>
+            </nav>
+            <button onclick="showPage('page-home')" class="text-red-400 text-left p-3"><i class="fa-solid fa-sign-out mr-2"></i> Sair</button>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-8 bg-gray-100">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Gerenciar Lojas</h2>
+                <button onclick="toggleModal('modal-add', true)" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold shadow-md">+ Cadastrar</button>
             </div>
 
-            <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                <table class="w-full text-left border-collapse">
-                    <thead class="bg-gray-50 text-gray-600 uppercase text-xs font-bold">
-                        <tr>
+            <div class="bg-white rounded-xl shadow overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-50 border-b">
+                        <tr class="text-left text-xs font-bold text-gray-500 uppercase">
                             <th class="p-4">Loja</th>
-                            <th class="p-4">Shopping</th>
                             <th class="p-4">Preço</th>
-                            <th class="p-4">Mídia</th>
                             <th class="p-4">Status</th>
-                            <th class="p-4">Ações</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="p-4 font-medium">Sala 204 - Premium</td>
-                            <td class="p-4">Rio Sul Shopping</td>
-                            <td class="p-4">R$ 4.500,00</td>
-                            <td class="p-4 text-gray-500 text-sm">10 fotos / 1 vídeo</td>
-                            <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">Ativo</span></td>
-                            <td class="p-4 space-x-2">
-                                <button class="text-blue-600 hover:text-blue-800"><i class="fa-solid fa-pen"></i></button>
-                                <button class="text-red-600 hover:text-red-800"><i class="fa-solid fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="p-4 font-medium">Quiosque Corredor A</td>
-                            <td class="p-4">Barra Shopping</td>
-                            <td class="p-4">R$ 2.800,00</td>
-                            <td class="p-4 text-gray-500 text-sm">5 fotos / 0 vídeo</td>
-                            <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">Pendente</span></td>
-                            <td class="p-4 space-x-2">
-                                <button class="text-blue-600 hover:text-blue-800"><i class="fa-solid fa-pen"></i></button>
-                                <button class="text-red-600 hover:text-red-800"><i class="fa-solid fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="lista-lojas" class="divide-y">
+                        </tbody>
                 </table>
             </div>
-        </div>
-    </main>
+        </main>
+    </section>
 
-    <div id="modalCadastro" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4 z-[100]">
-        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
-            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
-                <h3 class="text-xl font-bold text-gray-800">Cadastrar Nova Loja</h3>
-                <button onclick="document.getElementById('modalCadastro').classList.add('hidden')" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
-            </div>
-            
-            <form id="formMaster" class="p-6 space-y-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-bold mb-1">Nome do Espaço</label>
-                        <input type="text" class="w-full border p-2 rounded-lg" placeholder="Ex: Loja 10" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-1">Shopping</label>
-                        <select class="w-full border p-2 rounded-lg">
-                            <option>Selecione o Shopping</option>
-                            <option>Rio Sul</option>
-                            <option>Barra Shopping</option>
-                        </select>
-                    </div>
+    <div id="modal-add" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-[100]">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 shadow-2xl">
+            <h3 class="text-xl font-bold mb-4 border-b pb-2">Novo Anúncio</h3>
+            <form onsubmit="handleSaveLoja(event)" class="space-y-4">
+                <input type="text" placeholder="Nome da Loja" class="w-full border p-2 rounded" required>
+                <input type="number" placeholder="Valor do Aluguel" class="w-full border p-2 rounded" required>
+                <div class="border-2 border-dashed p-4 rounded text-center">
+                    <label class="block text-sm font-bold text-gray-600">Fotos (Até 10)</label>
+                    <input type="file" id="inputFotos" multiple accept="image/*" class="mt-2 text-sm text-gray-500">
+                    <div id="preview" class="flex flex-wrap gap-2 mt-2 justify-center"></div>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-bold mb-1">Preço Aluguel (R$)</label>
-                        <input type="number" class="w-full border p-2 rounded-lg" placeholder="0.00">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-1">Link do Vídeo (YouTube)</label>
-                        <input type="url" class="w-full border p-2 rounded-lg" placeholder="https://...">
-                    </div>
+                <div class="flex gap-2">
+                    <button type="button" onclick="toggleModal('modal-add', false)" class="flex-1 bg-gray-200 py-2 rounded font-bold">Cancelar</button>
+                    <button type="submit" class="flex-1 bg-blue-600 text-white py-2 rounded font-bold">Salvar</button>
                 </div>
-
-                <div class="border-2 border-dashed border-gray-200 p-4 rounded-xl text-center">
-                    <label class="block text-sm font-bold mb-2">Fotos da Loja (Máximo 10)</label>
-                    <input type="file" id="inputFotos" multiple accept="image/*" class="hidden">
-                    <button type="button" onclick="document.getElementById('inputFotos').click()" class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-200 mb-2">
-                        <i class="fa-solid fa-cloud-arrow-up"></i> Selecionar Imagens
-                    </button>
-                    <p id="txtContador" class="text-xs text-gray-400">0 de 10 fotos selecionadas</p>
-                    <div id="preview" class="flex flex-wrap gap-2 mt-4 justify-center"></div>
-                </div>
-
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold shadow-lg hover:bg-blue-700 transition">
-                    Finalizar e Publicar
-                </button>
             </form>
         </div>
     </div>
 
     <script>
-        const inputFotos = document.getElementById('inputFotos');
-        const preview = document.getElementById('preview');
-        const txtContador = document.getElementById('txtContador');
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
 
-        inputFotos.addEventListener('change', function() {
+        function toggleModal(id, show) {
+            const m = document.getElementById(id);
+            show ? m.classList.remove('hidden') : m.classList.add('hidden');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+
+            if(email === "admin@emx.com" && pass === "123456") {
+                showPage('page-admin');
+            } else {
+                alert("Acesso Master Inválido!");
+            }
+        }
+
+        // Lógica de Preview de Fotos
+        document.getElementById('inputFotos').addEventListener('change', function() {
             const files = Array.from(this.files);
-            
-            if (files.length > 10) {
-                alert("Opa! O limite é de 10 fotos por loja.");
+            const preview = document.getElementById('preview');
+            if(files.length > 10) {
+                alert("Máximo 10 fotos!");
                 this.value = "";
-                preview.innerHTML = "";
-                txtContador.innerText = "0 de 10 fotos selecionadas";
                 return;
             }
-
-            txtContador.innerText = `${files.length} de 10 fotos selecionadas`;
             preview.innerHTML = "";
-
             files.forEach(file => {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    const div = document.createElement('div');
-                    div.innerHTML = `<img src="${e.target.result}" class="w-16 h-16 object-cover rounded-lg shadow-sm">`;
-                    preview.appendChild(div);
+                reader.onload = (e) => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('preview-img');
+                    preview.appendChild(img);
                 }
                 reader.readAsDataURL(file);
             });
         });
 
-        document.getElementById('formMaster').onsubmit = (e) => {
+        function handleSaveLoja(e) {
             e.preventDefault();
-            alert("Sucesso! Os dados foram enviados para o processamento.");
-            document.getElementById('modalCadastro').classList.add('hidden');
-        };
+            alert("Sucesso! Loja cadastrada no Painel Master.");
+            toggleModal('modal-add', false);
+        }
     </script>
 </body>
 </html>
