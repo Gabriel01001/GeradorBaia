@@ -3,70 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Login - EMX Systems</title>
+    <title>Painel Master - EMX Systems</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-slate-900 h-screen flex items-center justify-center px-4">
+<body class="bg-gray-100 flex h-screen overflow-hidden">
 
-    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
-        
-        <div class="bg-blue-600 p-8 text-center text-white">
-            <div class="text-3xl font-extrabold tracking-tight mb-2">EMX<span class="text-blue-200">Systems</span></div>
-            <p class="text-blue-100 opacity-80">Painel de Controle Master</p>
+    <aside class="w-64 bg-slate-900 text-white flex-shrink-0 hidden md:flex flex-col">
+        <div class="p-6 text-2xl font-bold border-b border-slate-800">
+            EMX <span class="text-blue-500 text-sm italic">Master</span>
         </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="#" class="flex items-center gap-3 p-3 bg-blue-600 rounded-lg"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition"><i class="fa-solid fa-store"></i> Gerenciar Lojas</a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition"><i class="fa-solid fa-building"></i> Shoppings</a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-lg transition"><i class="fa-solid fa-users"></i> Usuários</a>
+        </nav>
+        <div class="p-4 border-t border-slate-800">
+            <button class="flex items-center gap-3 p-3 text-red-400 hover:text-red-300 w-full"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+        </div>
+    </aside>
 
-        <form id="loginForm" class="p-8 space-y-6">
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">E-mail Administrativo</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                        <i class="fa-solid fa-envelope"></i>
-                    </span>
-                    <input type="email" id="email" required
-                        class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition" 
-                        placeholder="admin@emxsystems.com.br">
+    <main class="flex-1 flex flex-col overflow-y-auto">
+        
+        <header class="bg-white shadow-sm p-4 flex justify-between items-center px-8">
+            <h1 class="text-xl font-semibold text-gray-800">Gerenciamento de Imóveis</h1>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">Olá, Emmanuel Martins</span>
+                <img src="https://ui-avatars.com/api/?name=Emmanuel+Martins&background=0D8ABC&color=fff" class="w-10 h-10 rounded-full">
+            </div>
+        </header>
+
+        <div class="p-8 space-y-8">
+            
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-800">Lojas Cadastradas</h2>
+                <button onclick="document.getElementById('modalCadastro').classList.remove('hidden')" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+                    + Nova Loja
+                </button>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-50 text-gray-600 uppercase text-xs font-bold">
+                        <tr>
+                            <th class="p-4">Loja</th>
+                            <th class="p-4">Shopping</th>
+                            <th class="p-4">Preço</th>
+                            <th class="p-4">Mídia</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 font-medium">Sala 204 - Premium</td>
+                            <td class="p-4">Rio Sul Shopping</td>
+                            <td class="p-4">R$ 4.500,00</td>
+                            <td class="p-4 text-gray-500 text-sm">10 fotos / 1 vídeo</td>
+                            <td class="p-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">Ativo</span></td>
+                            <td class="p-4 space-x-2">
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fa-solid fa-pen"></i></button>
+                                <button class="text-red-600 hover:text-red-800"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 font-medium">Quiosque Corredor A</td>
+                            <td class="p-4">Barra Shopping</td>
+                            <td class="p-4">R$ 2.800,00</td>
+                            <td class="p-4 text-gray-500 text-sm">5 fotos / 0 vídeo</td>
+                            <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">Pendente</span></td>
+                            <td class="p-4 space-x-2">
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fa-solid fa-pen"></i></button>
+                                <button class="text-red-600 hover:text-red-800"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div id="modalCadastro" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4 z-[100]">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
+                <h3 class="text-xl font-bold text-gray-800">Cadastrar Nova Loja</h3>
+                <button onclick="document.getElementById('modalCadastro').classList.add('hidden')" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            
+            <form id="formMaster" class="p-6 space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Nome do Espaço</label>
+                        <input type="text" class="w-full border p-2 rounded-lg" placeholder="Ex: Loja 10" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Shopping</label>
+                        <select class="w-full border p-2 rounded-lg">
+                            <option>Selecione o Shopping</option>
+                            <option>Rio Sul</option>
+                            <option>Barra Shopping</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Senha Master</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                        <i class="fa-solid fa-lock"></i>
-                    </span>
-                    <input type="password" id="password" required
-                        class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition" 
-                        placeholder="••••••••">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Preço Aluguel (R$)</label>
+                        <input type="number" class="w-full border p-2 rounded-lg" placeholder="0.00">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Link do Vídeo (YouTube)</label>
+                        <input type="url" class="w-full border p-2 rounded-lg" placeholder="https://...">
+                    </div>
                 </div>
-            </div>
 
-            <button type="submit" 
-                class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transform hover:scale-[1.02] transition-all duration-200 shadow-lg">
-                Acessar Sistema
-            </button>
+                <div class="border-2 border-dashed border-gray-200 p-4 rounded-xl text-center">
+                    <label class="block text-sm font-bold mb-2">Fotos da Loja (Máximo 10)</label>
+                    <input type="file" id="inputFotos" multiple accept="image/*" class="hidden">
+                    <button type="button" onclick="document.getElementById('inputFotos').click()" class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-200 mb-2">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Selecionar Imagens
+                    </button>
+                    <p id="txtContador" class="text-xs text-gray-400">0 de 10 fotos selecionadas</p>
+                    <div id="preview" class="flex flex-wrap gap-2 mt-4 justify-center"></div>
+                </div>
 
-            <div class="text-center">
-                <a href="#" class="text-sm text-blue-600 hover:underline">Esqueceu a senha master?</a>
-            </div>
-        </form>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold shadow-lg hover:bg-blue-700 transition">
+                    Finalizar e Publicar
+                </button>
+            </form>
+        </div>
     </div>
 
     <script>
-        document.getElementById('loginForm').onsubmit = function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
+        const inputFotos = document.getElementById('inputFotos');
+        const preview = document.getElementById('preview');
+        const txtContador = document.getElementById('txtContador');
 
-            // Logica temporária de teste (Depois substituiremos pelo Supabase)
-            if(email === "admin@emx.com" && pass === "123456") {
-                alert("Acesso Master Concedido! Redirecionando para o painel...");
-                // window.location.href = "painel-admin.html";
-            } else {
-                alert("Erro: Credenciais Master inválidas.");
+        inputFotos.addEventListener('change', function() {
+            const files = Array.from(this.files);
+            
+            if (files.length > 10) {
+                alert("Opa! O limite é de 10 fotos por loja.");
+                this.value = "";
+                preview.innerHTML = "";
+                txtContador.innerText = "0 de 10 fotos selecionadas";
+                return;
             }
+
+            txtContador.innerText = `${files.length} de 10 fotos selecionadas`;
+            preview.innerHTML = "";
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const div = document.createElement('div');
+                    div.innerHTML = `<img src="${e.target.result}" class="w-16 h-16 object-cover rounded-lg shadow-sm">`;
+                    preview.appendChild(div);
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+
+        document.getElementById('formMaster').onsubmit = (e) => {
+            e.preventDefault();
+            alert("Sucesso! Os dados foram enviados para o processamento.");
+            document.getElementById('modalCadastro').classList.add('hidden');
         };
     </script>
-
 </body>
 </html>
